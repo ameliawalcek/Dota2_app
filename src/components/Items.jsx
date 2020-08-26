@@ -1,15 +1,17 @@
-import React, { Component } from 'react';
-//import '../style/Items'
+import React from 'react';
+import { observer, inject } from 'mobx-react'
+import Item from './Item';
 
-class Items extends Component {
+const Items = inject("itemStore")(observer((props) => {
 
-    render() {
-        return (
-            <div>
-                
-            </div>
-        )
+    const displayItems = () =>{
+        return props.itemStore.itemDetails.map(item => <Item item={item[1]} /> || [])
     }
-}
+    return (
+        <div>
+            {displayItems()}
+        </div>
+    )
+}))
 
 export default Items;
